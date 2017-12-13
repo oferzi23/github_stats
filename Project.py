@@ -7,7 +7,7 @@ class Project:
     """describes a repository"""
 
     # members
-    base_headers = {"Authorization": "token e4f0f58f35560e168113178687d66a942627ac55"}
+    base_headers = {"Authorization": "token "}
     base_url  = ""
     owner = ""
     name  = ""
@@ -22,7 +22,7 @@ class Project:
         res = req.get("%s/issues?state=closed" % (self.base_url), headers = self.base_headers)
         self.issues["pages"] = int(res.links["last"]["url"].split("=")[-1])
         self.issues["total_count"] = 0
-        
+
         isum = 0
         for i in range(1, self.issues["pages"]+1):
             r = req.get("%s/issues?state=closed&page=%i" % (self.base_url, i), headers = self.base_headers)
@@ -35,8 +35,3 @@ class Project:
                 isum += delta.days
             print("after page %i: sum=%i, count=%i" % (i, isum, self.issues["total_count"]))
         self.issues["avg_closed_time"] = isum / self.issues["total_count"]
-        
-
-                
-
-    
