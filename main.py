@@ -1,16 +1,44 @@
 from Project import Project
 
-BASE_URL = "https://api.github.com"
 
-PROJECTS = [("elastic","kibana")]
+PROJECTS_FILENAME = "projects.txt"
 
-def iter_projects():
+OUTPUT_CSV_PATH = "github_stats.csv"
+
+def generate_project_list(filename):
+    projects = []
+    with open(filename, 'rU') as f:
+        for line in f.readlines():
+            line_stripped = line.rstrip()
+            parts = line_stripped.split(',')
+            projects.append(tuple(parts))
+    return projects
+
+def iter_projects(projects):
     res = []
-    for project in PROJECTS:
+    for project in projects:
+        print("working on %s/%s" % project)
         p = Project(project[0],project[1])
+        print(" - analyzing issues")
         p.get_issue_data()
-        for key, val in p.issues.iteritems():
-            print(key, val)
+        print("    " + str(p.issues))
+        res.append(p)
+    return res
+
+def generate_csv_dataset(projects_metrics):
+    with open(OUTPUT_CSV_PATH, 'w') as f:
+        f.write("owner,name,issues.total_count,issues.avg_closed_time\n")
+    for project in projects_metrics:
+        line = []
+        line.append(project.owner)
+        line.append(project.name)
+        line.append(str(project.issues["total_count"]))
+        line.append(str(project.issues["avg_closed_time"]))
+
+        with open(OUTPUT_CSV_PATH, 'a') as f:
+            f.write(",".join(line) + "\n")
 
 if __name__ == "__main__":
-    projects_metrics = iter_projects()
+    projects = generate_project_list(PROJECTS_FILENAME)
+    projects_metrics = iter_projects(projects)
+    generate_csv_dataset(projects_metrics)

@@ -1,0 +1,3 @@
+owner,name,issues.total_count,issues.avg_closed_time
+elastic,puppet-elasticsearch,871,35
+theforeman,foreman,4958,22

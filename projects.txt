@@ -1,0 +1,2 @@
+elastic,puppet-elasticsearch
+theforeman,foreman
