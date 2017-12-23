@@ -1,4 +1,5 @@
 from Project import Project
+from Configuration import conf
 
 
 PROJECTS_FILENAME = "projects.txt"
