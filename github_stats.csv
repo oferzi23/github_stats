@@ -1,3 +1,3 @@
-owner,name,issues.total_count,issues.avg_closed_time
-elastic,puppet-elasticsearch,874,35
-theforeman,foreman,4985,22
+owner,name,issues.total_count,issues.avg_closed_time,total_code_lines
+elastic,puppet-elasticsearch,874,35,6131
+theforeman,foreman,4987,22,126803

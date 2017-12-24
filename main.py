@@ -21,20 +21,23 @@ def iter_projects(projects):
         print("working on %s/%s" % project)
         p = Project(project[0],project[1])
         print(" - analyzing issues")
-        p.get_issue_data()
-        print("    " + str(p.issues))
+        p.set_openhub_data()
+        print("    OPENHUB\n    " + str(p.openhub))
+        p.set_issue_data()
+        print("    ISSUES\n    " + str(p.issues))
         res.append(p)
     return res
 
 def generate_csv_dataset(projects_metrics):
     with open(OUTPUT_CSV_PATH, 'w') as f:
-        f.write("owner,name,issues.total_count,issues.avg_closed_time\n")
+        f.write("owner,name,issues.total_count,issues.avg_closed_time,total_code_lines\n")
     for project in projects_metrics:
         line = []
         line.append(project.owner)
         line.append(project.name)
         line.append(str(project.issues["total_count"]))
         line.append(str(project.issues["avg_closed_time"]))
+        line.append(str(project.openhub["stats"]["total_code_lines"]))
 
         with open(OUTPUT_CSV_PATH, 'a') as f:
             f.write(",".join(line) + "\n")
