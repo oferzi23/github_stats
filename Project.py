@@ -75,8 +75,8 @@ class Project:
 
     def set_openhub_stats(self):
     # get analyses
-        stats = {'total_code_lines': -1}
-        res = req.get("%s/analyses/latest.xml" % self.openhub['api_url'], params = self.openhub['base_params'])
+        stats = { 'total_code_lines': -1, 'languages': [], 'PAI': 'N/A' }
+        res = req.get("%s.xml" % self.openhub['api_url'], params = self.openhub['base_params'])
         tree = ElementTree.fromstring(res.content)
         if tree.find('.//status').text == 'success':
             analysis = tree.find('.//analysis')
@@ -84,6 +84,13 @@ class Project:
     # collect statistics
                 tcl = analysis.find('total_code_lines')
                 if tcl is not None:
-                    stats['total_code_lines'] = int(tcl.text)            
+                    stats['total_code_lines'] = int(tcl.text)
+    # collect languages
+                languages = analysis.findall('.//languages/language')
+                for lang in languages:
+                    stats['languages'].append(lang.text)
+    # collect PAI
+        project_activity_index = tree.find('.//project_activity_index/description').text        
+        stats['PAI'] = project_activity_index
         return stats
 

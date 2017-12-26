@@ -1,2 +1,16 @@
 elastic,puppet-elasticsearch
 theforeman,foreman
+microsoft,vscode
+facebook,react-native
+npm,npm
+angular,angular-cli
+tensorflow,tensorflow
+FortAwesome,Font-Awesome
+angular,angular
+docker,docker
+ansible,ansible
+twbs,bootstrap
+nodejs,node
+php,php-src
+apache,httpd
+mysql,mysql-server

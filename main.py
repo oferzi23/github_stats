@@ -22,9 +22,9 @@ def iter_projects(projects):
         p = Project(project[0],project[1])
         print(" - analyzing issues")
         p.set_openhub_data()
-        print("    OPENHUB\n    " + str(p.openhub))
+        print("    - OPENHUB\n    " + str(p.openhub))
         p.set_issue_data()
-        print("    ISSUES\n    " + str(p.issues))
+        print("    - ISSUES\n    " + str(p.issues))
         res.append(p)
     return res
 
