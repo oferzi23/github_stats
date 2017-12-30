@@ -5,12 +5,11 @@ from xml.etree import ElementTree
 import json
 
 PROJECTS_FILENAME = "test/projects.txt"
-# PROJECTS_FILENAME = "projects2.txt"
-
-# OUTPUT_CSV_PATH = "test/github_stats.csv"
-# OUTPUT_CSV_PATH = "github_stats2.csv"
-
+OUTPUT_CSV_PATH = "test/github_stats.csv"
 OUTPUT_JSON_PATH = "test/github_stats.json"
+
+# PROJECTS_FILENAME = "projects2.txt"
+# OUTPUT_CSV_PATH = "github_stats2.csv"
 # OUTPUT_JSON_PATH  = "github_stats2.json"
 
 def generate_project_list():
@@ -25,8 +24,7 @@ def generate_project_list():
         for n in name_elements:
             names.append(n.text)
     print ('\n'.join(names))
-        
-    
+      
 def read_project_list(filename):
     projects = []
     with open(filename, 'rU') as f:
@@ -49,7 +47,6 @@ def iter_projects(projects):
             p.set_contrib_data()
             print("    - CONTRIBUTORS\n    " + str(p.contributors))
             p.set_openhub_data()
-            print("here")
             print("    - OPENHUB\n    " + str(p.openhub))
             p.set_issue_data()
             print("    - ISSUES\n    " + str(p.issues))
