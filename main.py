@@ -4,14 +4,14 @@ import requests as req
 from xml.etree import ElementTree
 import json
 
-# PROJECTS_FILENAME = "test/projects.txt"
-PROJECTS_FILENAME = "projects2.txt"
+PROJECTS_FILENAME = "test/projects.txt"
+# PROJECTS_FILENAME = "projects2.txt"
 
 # OUTPUT_CSV_PATH = "test/github_stats.csv"
 # OUTPUT_CSV_PATH = "github_stats2.csv"
 
-# OUTPUT_JSON_PATH = "test/github_stats.json"
-OUTPUT_JSON_PATH  = "github_stats2.json"
+OUTPUT_JSON_PATH = "test/github_stats.json"
+# OUTPUT_JSON_PATH  = "github_stats2.json"
 
 def generate_project_list():
     base_params = {'api_key': conf['openhub_api']['api_key'], 'page': 0 }
@@ -43,32 +43,28 @@ def iter_projects(projects):
         try:
             print("working on %s" % project[0])
             p = Project(project[0],project[1],project[2])
+            print("    - CREATED AT: " + str(p.created_at))
             p.set_language_data()
             print("    - LANGUAGES\n    " + str(p.languages))
             p.set_contrib_data()
             print("    - CONTRIBUTORS\n    " + str(p.contributors))
             p.set_openhub_data()
+            print("here")
             print("    - OPENHUB\n    " + str(p.openhub))
             p.set_issue_data()
             print("    - ISSUES\n    " + str(p.issues))
             # p.generate_csv_line(OUTPUT_CSV_PATH)
             res.append(p)
         except Exception as e:
-            print("      ERROR - error while analyzing project -= %s/%s =- \n" % (p.owner,p.name))
-            print(e)
+            print("      ERROR - error while analyzing project -= %s/%s =- \n" % (project[1],project[2]))
+            print(e.__str__())
+    print("FINISHED RUN")
     return res
 
 def generate_json_datatset(data, path):
     dataset = []
     for p in data:
-        dataset.append(
-            { 'owner': p.owner,
-              'name': p.name,
-              'issues': p.issues,
-              'openhub': p.openhub,
-              'languages': p.languages,
-              'contributors': p.contributors
-                        })
+        dataset.append(p.to_json())
     with open(path, 'w') as f:
         f.write(json.dumps(dataset))
 

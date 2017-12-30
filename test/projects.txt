@@ -1,0 +1,1 @@
+puppet-elasticsearch,elastic,puppet-elasticsearch

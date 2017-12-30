@@ -24,6 +24,17 @@ class Project:
         self.contributors = {}
         self.languages = {}
         self.openhub = {'query_name': openhub_name }
+        self.created_at = self.set_create_date()
+    
+    def set_create_date(self):
+        res = "N/A"
+        req_r = req.get("%s" % (self.project_github_api_url), headers = self.base_headers)
+        r_j = req_r.json()
+        if "created_at" in r_j:
+           res = r_j["created_at"]
+        else:
+            raise Exception("COULD NOT GET CREATED DATE")
+        return res
 
     def set_language_data(self):
         res = req.get("%s/languages" % (self.project_github_api_url), headers = self.base_headers)
@@ -84,7 +95,7 @@ class Project:
             self.openhub['api_url'] = "%s/%s" % (conf['openhub_api']['base_url'], self.openhub['id'])
             self.openhub['stats'] = self.set_openhub_stats()
         else:
-            print("     ERROR - Can't get openhub id for this project")
+            raise Exception("     ERROR - Can't get openhub id for this project")
 
     def get_openhub_id(self):
         found = False
@@ -143,5 +154,15 @@ class Project:
         line.append(str(self.contributors["bus_factor"]))
         with open(path, 'a') as f:
             f.write(",".join(line) + "\n")
-        
+
+    def to_json(self):
+        return { 
+            'owner': self.owner,
+            'name': self.name,
+            'issues': self.issues,
+            'oselfenhub': self.openhub,
+            'languages': self.languages,
+            'contributors': self.contributors,
+            'created_at': self.created_at
+        }        
 
