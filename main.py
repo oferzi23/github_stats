@@ -2,10 +2,16 @@ from Project import Project
 from Configuration import conf
 import requests as req
 from xml.etree import ElementTree
+import json
 
+# PROJECTS_FILENAME = "test/projects.txt"
 PROJECTS_FILENAME = "projects2.txt"
 
-OUTPUT_CSV_PATH = "github_stats2.csv"
+# OUTPUT_CSV_PATH = "test/github_stats.csv"
+# OUTPUT_CSV_PATH = "github_stats2.csv"
+
+# OUTPUT_JSON_PATH = "test/github_stats.json"
+OUTPUT_JSON_PATH  = "github_stats2.json"
 
 def generate_project_list():
     base_params = {'api_key': conf['openhub_api']['api_key'], 'page': 0 }
@@ -37,34 +43,37 @@ def iter_projects(projects):
         try:
             print("working on %s" % project[0])
             p = Project(project[0],project[1],project[2])
-            print(" - analyzing issues")
+            p.set_language_data()
+            print("    - LANGUAGES\n    " + str(p.languages))
+            p.set_contrib_data()
+            print("    - CONTRIBUTORS\n    " + str(p.contributors))
             p.set_openhub_data()
             print("    - OPENHUB\n    " + str(p.openhub))
             p.set_issue_data()
             print("    - ISSUES\n    " + str(p.issues))
-            # p.set_truck_factor()
-            p.generate_csv_line(OUTPUT_CSV_PATH)
+            # p.generate_csv_line(OUTPUT_CSV_PATH)
             res.append(p)
         except Exception as e:
-            print("      ERROR - error while analyzing project -= %s/%s =- \n" % (p.owner,p.name) + str(e) )
+            print("      ERROR - error while analyzing project -= %s/%s =- \n" % (p.owner,p.name))
+            print(e)
     return res
 
-def generate_csv_dataset(projects_metrics):
-    with open(OUTPUT_CSV_PATH, 'w') as f:
-        f.write("owner,name,issues.total_count,issues.avg_closed_time,total_code_lines,languages\n")
-    for project in projects_metrics:
-        line = []
-        line.append(project.owner)
-        line.append(project.name)
-        line.append(str(project.issues["total_count"]))
-        line.append(str(project.issues["avg_closed_time"]))
-        line.append(str(project.openhub["stats"]["total_code_lines"]))
-        line.append("\"" + str('/'.join(project.openhub["stats"]["languages"])) + "\"")
-        with open(OUTPUT_CSV_PATH, 'a') as f:
-            f.write(",".join(line) + "\n")
+def generate_json_datatset(data, path):
+    dataset = []
+    for p in data:
+        dataset.append(
+            { 'owner': p.owner,
+              'name': p.name,
+              'issues': p.issues,
+              'openhub': p.openhub,
+              'languages': p.languages,
+              'contributors': p.contributors
+                        })
+    with open(path, 'w') as f:
+        f.write(json.dumps(dataset))
 
 if __name__ == "__main__":
     # projects = generate_project_list()
     projects = read_project_list(PROJECTS_FILENAME)
     projects_metrics = iter_projects(projects)
-    # generate_csv_dataset(projects_metrics)
+    generate_json_datatset(projects_metrics, OUTPUT_JSON_PATH)

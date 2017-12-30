@@ -1,8 +1,9 @@
-owner,name,issues.total_count,issues.avg_closed_time,total_code_lines,languages
+owner,name,issues.total_count,issues.avg_closed_time,total_code_lines,languages,total_commits,bus_factor
 elastic,puppet-elasticsearch,875,35,6131,"Ruby/Puppet/Pascal/shell script"
 theforeman,foreman,4999,22,126803,"Ruby/JavaScript/8 Other"
 facebook,react-native,16573,50,222569,"JavaScript/Java/Objective-C/11 Other"
 npm,npm,17825,124,160093,"JavaScript/Python/12 Other"
+angular,angular-cli,8117,16,-1,""
 tensorflow,tensorflow,14090,24,1149724,"C++/Python/13 Other"
 FortAwesome,Font-Awesome,7611,71,83321,"HTML/CSS/3 Other"
 angular,angular,19078,34,444025,"JavaScript/XML/5 Other"
@@ -34,7 +35,7 @@ freemint,m68k-atari-mint-gcc,2,2,6454392,"C/C++/Ada/29 Other"
 FauxFaux,PuTTYTray,141,103,109424,"C/9 Other"
 openssh,openssh-portable,28,94,112402,"C/shell script/6 Other"
 phpmyadmin,phpmyadmin,13600,2108,430779,"PHP/JavaScript/HTML/8 Other"
-DSB,oTranCe,56,61,415303,"4 Other"
+DSB,oTranCe,56,61,-415303,"4 Other"
 xzilla,phppgadmin,5,79,288081,"PHP/JavaScript/7 Other"
 python,cpython,4469,7,973140,"Python/C/15 Other"
 ruby,ruby,1631,52,1160825,"Ruby/C/18 Other"
@@ -49,6 +50,57 @@ arnaudsj,monit,1,8,79995,"C/HTML/8 Other"
 MailScanner,MailScanner,32,13,46705,"Perl/shell script/HTML/3 Other"
 mkj,dropbear,44,92,112143,"C/TeX/LaTeX/shell script/6 Other"
 clientside,amplesdk,150,41,76473,"JavaScript/5 Other"
+elastic,puppet-elasticsearch,875,35,6131,"Shell/HTML/Puppet/Pascal/Ruby",Very Low,1400,2
+theforeman,foreman,5001,22,126803,"Shell/HTML/Python/Ruby/JavaScript/Makefile/CSS",High,0,0
+facebook,react-native,16590,50,222569,"Shell/Java/C/Objective-C++/JavaScript/Assembly/Makefile/IDL/Prolog/Batchfile/HTML/Python/CSS/Kotlin/C++/Ruby/Objective-C",Very High,8304,100
+npm,npm,17826,124,160093,"Shell/Makefile/Batchfile/JavaScript/HTML/CSS",Very Low,7478,3
+angular,angular-cli,8137,16,-1,"JavaScript/HTML/TypeScript/CSS",N/A,0,0
+tensorflow,tensorflow,14126,24,1149724,"Perl 6/Shell/Java/Go/Objective-C++/Perl/PureBasic/Jupyter Notebook/CMake/Batchfile/Makefile/Python/PHP/LLVM/Objective-C/C++/Ruby/C",Very High,19290,100
+FortAwesome,Font-Awesome,7617,71,83321,"JavaScript/HTML/Makefile/Ruby/CSS",Not Available,996,2
+angular,angular,19083,34,441086,"Shell/HTML/Python/JavaScript/TypeScript/CSS",Very High,8461,100
+docker,docker,32802,31,591549,"Shell/Makefile/C/Vim script/PowerShell/Assembly/Go",Very High,14299,100
+ansible,ansible,29685,44,721787,"Shell/Go/Tcl/JavaScript/HTML/DIGITAL Command Language/Batchfile/Makefile/Python/Roff/PowerShell/C#",Not Available,0,0
+twbs,bootstrap,24506,19,54529,"Shell/HTML/CSS/PowerShell/JavaScript/Ruby",Very High,11612,3
+nodejs,node,17055,33,3853528,"Shell/R/C/JavaScript/DTrace/Makefile/Batchfile/HTML/Python/Roff/C++/PHP",Very High,16231,100
+php,php-src,2858,96,3993373,"Shell/DTrace/C/Batchfile/GDB/JavaScript/Awk/XSLT/Lex/Makefile/Yacc/Perl/M4/Roff/PHP/GAP/C++/HTML/Objective-C",Very High,46358,100
+apache,httpd,11,188,1911760,"Perl 6/Shell/C/Awk/Perl/DTrace/Lex/Makefile/Yacc/CMake/GDB/M4/Python/SourcePawn/PHP/C++/Lua",Very High,0,0
+mysql,mysql-server,186,6,3350798,"Perl 6/Shell/ActionScript/POV-Ray SDL/Logos/JavaScript/Awk/DTrace/Lex/CSS/CMake/Batchfile/Makefile/SourcePawn/AngelScript/SQLPL/Emacs Lisp/Pascal/C++/GAP/Prolog/PLpgSQL/Java/PHP/Visual Basic/Perl/Assembly/PLSQL/M4/Yacc/HTML/Python/Roff/XSLT/Vim script/Objective-C/C",Very High,8262,16
+microsoft,vscode,37116,37,54106,"Perl 6/Shell/R/Lua/PowerShell/TypeScript/CSS/Inno Setup/Visual Basic/Makefile/F#/Groovy/Clojure/C++/HLSL/PHP/Java/C/Batchfile/Perl/Go/CoffeeScript/Swift/ShaderLab/HTML/Python/Ruby/Rust/JavaScript/Objective-C/C#",Very High,25125,9
+facebook,react,11354,55,90851,"Shell/HTML/Python/Makefile/C/CoffeeScript/JavaScript/TypeScript/C++/CSS",Very High,5502,100
+FirebirdSQL,fbtest,0,0,1256880,"Batchfile/Makefile/Python/Pascal/HTML/CSS",High,0,0
+bestpractical,svk,0,0,38817,"Perl/JavaScript/Emacs Lisp/CSS/Shell",Inactive,0,0
+stevedekorte,io,313,211,216375,"Awk/C/Shell/M4/Python/Assembly/Makefile/CSS/Io/CMake/Batchfile/HTML/Ragel/Roff/JavaScript/Vim script/Emacs Lisp/C++/Objective-C",Low,0,0
+freebsd,freebsd,118,133,16334721,"KRL/R/Max/Awk/AGS Script/Haskell/CMake/Prolog/Batchfile/Meson/Lua/Pascal/M/Objective-C/PAWN/Turing/PHP/Mathematica/GLSL/Perl/Assembly/PLSQL/M4/Module Management System/Yacc/HTML/SuperCollider/Roff/BitBake/Ruby/Perl 6/Shell/1C Enterprise/Limbo/TeX/JavaScript/DTrace/Lex/CSS/Makefile/IGOR Pro/Forth/XS/Emacs Lisp/Terra/C++/OpenEdge ABL/GAP/Logos/PLpgSQL/Java/ChucK/C/D/Python/Scheme/GDB/PostScript/GCC Machine Description/DIGITAL Command Language/Vim script/Scilab/Tcl/EmberScript/C#/Rebol",Very High,0,0
+pdziepak,quarnos,0,0,6124,"Assembly/Makefile/Objective-C/C++/C",Inactive,0,0
+bq,linux-e60q22,0,0,10466640,"ApacheConf/Shell/Erlang/C/Awk/Perl/JavaScript/Assembly/ASP/UnrealScript/Makefile/Python/PHP/Scilab/Objective-C/C++/Bison",Inactive,0,0
+operasoftware,dragonfly,140,2,115797,"JavaScript/Python/PHP/Shell",Inactive,0,0
+jquery,jquery,3763,22,46062,"JavaScript/HTML/PHP/CSS",Moderate,5476,10
+aspiers,git-deps,27,9,4175,"Shell/HTML/Python/CoffeeScript/JavaScript/CSS",Very Low,0,0
+mypaint,mypaint,680,70,49691,"Shell/Python/C++/C",Moderate,3090,2
+jcupitt,nip2,53,24,175270,"Yacc/Shell/M4/C/Objective-C/Lex/Makefile/Perl 6/C++",Not Available,0,0
+apache,openoffice,1,0,357060,"Perl 6/Shell/Objective-C++/Awk/JavaScript/AMPL/Lex/CSS/AppleScript/Prolog/Visual Basic/Makefile/PHP/Emacs Lisp/Pascal/C++/PostScript/Java/C/Mathematica/Batchfile/Perl/Assembly/ASP/HTML/Yacc/M4/Python/Roff/XSLT/LLVM/Scilab/Objective-C/NSIS/C#",Not Available,1819,3
+LibreOffice,core,10,33,9148103,"Perl 6/Shell/Objective-C++/Awk/JavaScript/AMPL/Lex/CSS/AppleScript/Prolog/Visual Basic/Makefile/PostScript/Pascal/C++/Objective-C/Java/C/Batchfile/Perl/Assembly/ASP/HTML/Swift/Yacc/M4/Python/Roff/XSLT/Scilab/PHP/C#",Very High,0,0
+vim,vim,1884,21,579172,"Shell/Awk/JavaScript/IDL/Prolog/Batchfile/Makefile/SystemVerilog/XS/Emacs Lisp/C++/PostScript/C/Perl/NSIS/Module Management System/DIGITAL Command Language/M4/Python/Roff/Smalltalk/Vim script/NewLisp/Objective-C/Ruby",Very Low,8029,1
+SynEdit,SynEdit,66,109,327066,"HTML/Pascal/PHP/SourcePawn/C++",Not Available,0,0
+freemint,m68k-atari-mint-gcc,2,2,6454392,"M4/Awk/CSS/Haskell/CMake/Prolog/Batchfile/Pascal/Objective-C/PAWN/DIGITAL Command Language/Go/SAS/Ada/Perl/Smarty/Brainfuck/Module Management System/Yacc/HTML/Python/Roff/Perl 6/Shell/POV-Ray SDL/Objective-C++/TeX/Lex/SourcePawn/Makefile/Pure Data/Emacs Lisp/Standard ML/C++/PHP/Logos/Fortran/C/Matlab/OCaml/GDB/GCC Machine Description/Vim script/Scilab/Assembly/C#",Very High,0,0
+FauxFaux,PuTTYTray,141,103,109424,"Inno Setup/Shell/Makefile/Python/C/Batchfile/Perl/M4",Not Available,0,0
+openssh,openssh-portable,28,94,112402,"KRL/C/Shell/Perl/Awk/GLSL/Makefile/M4/OpenEdge ABL/Roff/BitBake/C++/GAP",High,0,0
+phpmyadmin,phpmyadmin,13605,2108,407677,"Shell/HTML/Python/PHP/JavaScript/CSS",Very High,66179,100
+DSB,oTranCe,56,61,-415303,"JavaScript/HTML/PHP/CSS",Low,0,0
+xzilla,phppgadmin,5,79,288081,"Shell/HTML/PHP/JavaScript/PLpgSQL/CSS",Not Available,0,0
+python,cpython,4481,7,973140,"Shell/C/Visual Basic/Common Lisp/Assembly/DTrace/PLSQL/M4/CSS/Batchfile/HTML/Python/Roff/PowerShell/Makefile/C++/Objective-C",Very High,0,0
+ruby,ruby,1632,53,1160825,"Perl 6/Shell/JavaScript/CSS/Batchfile/Makefile/Ragel/Emacs Lisp/C++/Scheme/C/Perl/Assembly/M4/Yacc/GDB/HTML/Python/XSLT/Scilab/Objective-C/Ruby",Very High,44024,11
+bakkdoor,fancy,75,89,2974,"Fancy/C/Perl/JavaScript/CSS/Ruby",Inactive,0,0
+OpenELEC,OpenELEC.tv,4930,50,29138,"ApacheConf/Shell/Makefile/Python/C/CMake",Moderate,0,0
+mpc-hc,mpc-hc,181,32,304285,"Inno Setup/Batchfile/HTML/Python/C/Shell/JavaScript/C++/CSS/Objective-C",Moderate,7098,3
+leavittx,rockbox,0,0,3291608,"Shell/Java/Lua/Perl/Assembly/C++/Visual Basic/Python/Vim script/Emacs Lisp/PHP/Ruby/C",High,0,0
+TortoiseGit,TortoiseGit,199,43,368268,"Shell/C/Batchfile/JavaScript/Makefile/CSS/Visual Basic/HTML/Python/C++/C#/Objective-C",High,0,0
+andk,cpanpm,87,64,22781,"Perl/Perl 6/HTML/Makefile/Prolog",Moderate,0,0
+puppetlabs,puppet,6425,14,280581,"Shell/HTML/Pascal/Batchfile/Emacs Lisp/Puppet/Makefile/Ruby",Very High,0,0
+arnaudsj,monit,1,8,79995,"Perl/Shell/C/PHP",Not Available,0,0
+MailScanner,MailScanner,32,13,46705,"Shell/HTML/Python/Groff/PHP/Perl",Very Low,0,0
+mkj,dropbear,44,92,112143,"Perl 6/Shell/M4/Roff/C/TeX/Perl/Assembly/Makefile/HTML/C++",Moderate,0,0
+clientside,amplesdk,150,41,76473,"JavaScript/PHP/CSS/XSLT",Inactive,0,0
 libarchive,libarchive,788,37,153048,"C/7 Other"
 ruby,rake,211,52,9386,"Ruby/2 Other"
 premake,premake-core,874,32,236039,"C/Lua/12 Other"
@@ -98,4 +150,52 @@ mikma,egssapi,0,0,2530,"C/Erlang/4 Other"
 greasemonkey,greasemonkey,1669,145,8030,"JavaScript/XML/2 Other"
 hibernate,hibernate-orm,2011,58,713174,"Java/10 Other"
 BatooOrg,BatooJPA,201,47,86964,"Java/4 Other"
-angular,angular-cli,8117,16,137282,"JavaScript/XML/2 Other"
+libarchive,libarchive,788,37,153048,"Shell/C/M4/CMake/Objective-C/Roff/Makefile/C++",Moderate,0,0
+ruby,rake,211,52,9386,"Ruby/Shell",Moderate,0,0
+premake,premake-core,874,32,236039,"HTML/Makefile/Visual Basic/Objective-C/Tcl/Shell/C/Perl/CMake/Lua/Roff/Batchfile/CSS/Assembly/C++",High,1534,3
+curl,curl,2095,19,260026,"DIGITAL Command Language/Emacs Lisp/Python/Perl/Makefile/Visual Basic/Awk/Shell/Perl 6/C/M4/CMake/Roff/C++/Assembly/Batchfile",Very High,21318,3
+chfoo,wpull,255,42,36054,"JavaScript/Shell/Python/Makefile/HTML/Haxe/CSS",Very Low,0,0
+pycurl,pycurl,453,32,14435,"Shell/C/Python/HTML/Makefile/PHP",Moderate,0,0
+Razor-qt,razor-qt,664,134,149658,"QMake/HTML/Perl/Makefile/Shell/C/Python/CMake/Groff/CSS/PHP/C++",Very Low,1926,5
+ExpressoBrowser,ExpressoBrowser,0,0,34078,"C++/C/C#",Inactive,0,0
+jiazhang0,grub-efi,0,0,70428,"Makefile/Assembly/Shell/C/Python",Inactive,0,0
+chenall,grub4dos,117,22,77520,"Makefile/Assembly/Shell/C",Very Low,0,0
+kexecboot,kexecboot,0,0,11452,"Makefile/Shell/M4/C/C++",Low,0,0
+ubiety,xmpp,22,32,3983,"C#",Not Available,0,0
+jitsi,jitsi,314,73,362816,"Shell/Java/C/HTML/Objective-C/Roff/Makefile/CSS/Visual Basic/XSLT/C++",Moderate,0,0
+0xd34df00d,leechcraft,349,7,680745,"XSLT/QML/HTML/Python/Shell/Smarty/JavaScript/Objective-C++/C/PLSQL/Objective-C/CMake/Roff/CSS/Haskell/C++",Not Available,0,0
+BetterCrypto,Applied-Crypto-Hardening,138,21,253320,"PostScript/Lua/HTML/Makefile/Erlang/Perl/TeX/Shell",Not Available,0,0
+pyca,pyopenssl,658,85,7878,"Shell/Python",Not Available,1454,4
+wolfSSL,wolfssl,1259,9,357622,"Ruby/M4/XS/Perl/Makefile/Objective-C/Arduino/Tcl/Shell/C/Python/Assembly/C#/C++",Very High,0,0
+cakephp,cakephp,11317,18,187244,"JavaScript/Shell/Makefile/CSS/PHP",Very High,24308,7
+Arania,madeam,0,0,1990,"PHP",Inactive,0,0
+mariano,syrup,5,95,50086,"PHP",Not Available,0,0
+tmux,tmux,1197,5,42126,"Shell/C/M4/Awk/Roff/Makefile",High,0,0
+bozimmerman,CoffeeWebServer,0,0,19574,"HTML/Java",Low,0,0
+restlet,restlet-framework-java,492,156,251473,"JavaScript/Shell/Java/FreeMarker/NSIS/HTML/XSLT/CSS/RAML/Batchfile",Very Low,0,0
+notepad-plus-plus,notepad-plus-plus,2088,58,338552,"Ruby/QMake/Shell/NSIS/HTML/Perl/Makefile/Visual Basic/Objective-C/Objective-C++/ASP/PostScript/C/Python/CMake/Lua/PLpgSQL/C++/PHP/Batchfile",Moderate,1905,4
+tldr-pages,tldr,1757,17,180,"Python/JavaScript/Shell/TeX",High,0,0
+synfig,synfig,324,16,2208080,"WebAssembly/DIGITAL Command Language/GLSL/M4/Objective-C/Pascal/Makefile/Nix/Tcl/PostScript/HTML/C/Python/CMake/Assembly/Smalltalk/Module Management System/Roff/C++/NSIS/AppleScript/SAS/Perl/Shell/Batchfile",Moderate,0,0
+b2evolution,b2evolution,47,57,744220,"JavaScript/Shell/C/HTML/Pascal/CSS/PHP",High,0,0
+movabletype,movabletype,59,182,769759,"Makefile/XS/HTML/XSLT/MTML/JavaScript/Shell/Perl 6/Perl/Prolog/Yacc/CSS/PHP/Smarty",Low,0,0
+junit-team,junit,1367,186,33352,"JavaScript/Shell/Java/HTML/CSS/Batchfile",Low,0,0
+rspec,rspec,24,1,70632,"Ruby",High,0,0
+phpspec,phpspec2,53,48,28786,"Ruby/PHP/JavaScript",Moderate,0,0
+christianhujer,aceunit,3,9,32069,"Makefile/Java/C/C++",Very Low,0,0
+pernicius,DevilTrac,0,0,19247,"PHP",Not Available,0,0
+perl11,cperl,267,44,37921,"DIGITAL Command Language/XS/Perl/Makefile/DTrace/Turing/JavaScript/Shell/C/Prolog/Assembly/Yacc/PHP/Batchfile/TeX/Emacs Lisp/Roff/Terra/Perl 6/Objective-C/C++/CSS",Low,0,0
+boo-lang,boo,129,81,297167,"PowerShell/GAP/Vim script/Emacs Lisp/Pascal/Makefile/Batchfile/Visual Basic/PHP/Lex/Shell/Java/C/Boo/Python/Roff/ANTLR/C#/HTML/C++",Low,0,0
+MythTV,mythtv,130,141,2415283,"PowerShell/QMake/Makefile/HTML/Perl/XSLT/Objective-C/Objective-C++/JavaScript/Shell/Perl 6/C/Python/Prolog/PAWN/CSS/PHP/C++",High,0,0
+mpv-player,mpv,4871,42,139048,"Prolog/JavaScript/Lua/Shell/C/Python/Ruby/Objective-C/HLSL/C++",Very High,3181,18
+LordZen,groink,0,0,7355,"Lua/Shell/C/Objective-C/Perl",Inactive,0,0
+snortadmin,snort3,31,32,302387,"Ruby/Shell/HTML/C/M4/CMake/Lua/Makefile/Objective-C/C++",Moderate,0,0
+nant,nant,104,121,86285,"JavaScript/XSLT/HTML/Makefile/CSS/C#",Very Low,0,0
+sonatype,nexus,864,4,21541,"",Very Low,10232,6
+ccnet,CruiseControl.NET,215,19,558111,"PowerShell/Groff/NSIS/HTML/Pascal/XSLT/Visual Basic/Shell/JavaScript/ASP/ActionScript/Java/C/Assembly/C++/CSS/C#/Batchfile",Inactive,0,0
+mirabilos,mksh,0,0,44958,"Shell/C/Perl/Roff/Makefile/C++",Moderate,0,0
+maandree,jash,0,0,1497,"Shell/Java",Inactive,0,0
+videolabs,libdsm,96,28,8490,"Ruby/Shell/C/M4/HTML/JavaScript/Makefile/CSS/C++",Low,0,0
+mikma,egssapi,0,0,2530,"Erlang/C",Inactive,0,0
+greasemonkey,greasemonkey,1669,145,8030,"Makefile/JavaScript/Shell/CSS/HTML",Not Available,0,0
+hibernate,hibernate-orm,2012,58,713174,"Groovy/HTML/Shell/Java/GAP",High,0,0
+BatooOrg,BatooJPA,201,47,86964,"Shell/Java/GAP",Very Low,0,0

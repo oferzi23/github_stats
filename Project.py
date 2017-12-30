@@ -21,19 +21,38 @@ class Project:
         self.owner = owner
         self.name = name
         self.issues = {}
+        self.contributors = {}
+        self.languages = {}
         self.openhub = {'query_name': openhub_name }
 
-    def set_openhub_data(self):
-        self.openhub['base_params'] = {'api_key': conf['openhub_api']['api_key'] }
-        self.openhub['stats'] = {}
-        openhub_id = self.get_openhub_id()
-        if openhub_id != -1:
-            self.openhub['id'] = openhub_id
-            self.openhub['api_url'] = "%s/%s" % (conf['openhub_api']['base_url'], self.openhub['id'])
-            self.openhub['stats'] = self.set_openhub_stats()
-        else:
-            print("     ERROR - Can't get openhub id for this project")
-            
+    def set_language_data(self):
+        res = req.get("%s/languages" % (self.project_github_api_url), headers = self.base_headers)
+        r_j = res.json()
+        self.languages = r_j
+
+
+    def set_contrib_data(self):
+        res = req.get("%s/stats/contributors" % (self.project_github_api_url), headers = self.base_headers)
+        r_j = res.json()
+        contrib = []
+        for cont in r_j:
+            contrib.append( cont["total"] )
+        self.contributors["total_commits"] = sum(contrib)
+        self.contributors["count"] = len(contrib)
+        self.contributors["list"] = contrib
+        contrib_p = []
+        for  i in range(0,len(contrib)):
+            contrib_p.append(int(contrib[i]/sum(contrib)*100))
+        contrib_p.sort(reverse=True)
+        BF = 0
+        temp = 0
+        index = 0
+        while (temp < 75 and index < len(contrib_p)):
+           BF += 1
+           temp += contrib_p[index]
+           index += 1
+        self.contributors["bus_factor"] = BF
+        self.contributors["list_p"] = contrib_p
 
     def set_issue_data(self):
         res = req.get("%s/issues?state=closed" % (self.project_github_api_url), headers = self.base_headers)
@@ -56,6 +75,17 @@ class Project:
                     isum += delta.days
                 self.issues["avg_closed_time"] = int(isum / self.issues["total_count"])
     
+    def set_openhub_data(self):
+        self.openhub['base_params'] = {'api_key': conf['openhub_api']['api_key'] }
+        self.openhub['stats'] = {}
+        openhub_id = self.get_openhub_id()
+        if openhub_id != -1:
+            self.openhub['id'] = openhub_id
+            self.openhub['api_url'] = "%s/%s" % (conf['openhub_api']['base_url'], self.openhub['id'])
+            self.openhub['stats'] = self.set_openhub_stats()
+        else:
+            print("     ERROR - Can't get openhub id for this project")
+
     def get_openhub_id(self):
         found = False
         options = [self.openhub['query_name'],"%s/%s" % (self.owner, self.name), self.name]
@@ -78,7 +108,7 @@ class Project:
 
     def set_openhub_stats(self):
     # get analyses
-        stats = { 'total_code_lines': -1, 'languages': [], 'PAI': 'N/A', 'licenses': [] }
+        stats = { 'total_code_lines': -1, 'PAI': 'N/A', 'licenses': [] }
         res = req.get("%s.xml" % self.openhub['api_url'], params = self.openhub['base_params'])
         tree = ElementTree.fromstring(res.content)
         status = tree.find('.//status')
@@ -89,10 +119,6 @@ class Project:
                 tcl = analysis.find('total_code_lines')
                 if tcl is not None:
                     stats['total_code_lines'] = int(tcl.text)
-    # collect languages
-                languages = analysis.findall('.//languages/language')
-                for lang in languages:
-                    stats['languages'].append(lang.text.lstrip('\n').rstrip())
     # collect PAI
             project_activity_index = tree.find('.//project_activity_index/description').text
             if project_activity_index is not None:
@@ -104,14 +130,6 @@ class Project:
                     stats['licenses'].append(license.text)
         return stats
 
-    def set_truck_factor(self):
-        # clone repo    
-        home_dir = os.getcwd()
-        clone = subprocess.run(['git', 'clone', self.repo_url, "/tmp/%s" % self.name], stdout=subprocess.PIPE)
-        os.chdir('BusFactor')
-        calc_bus_factor = subprocess.run(['nodejs','index.js', '-t', 'git', '-r', "/tmp/%s" % self.name], stdout=subprocess.PIPE)
-        print(calc_bus_factor.stdout.decode('utf-8'))
-
     def generate_csv_line(self, path):
         line = []
         line.append(self.owner)
@@ -119,7 +137,10 @@ class Project:
         line.append(str(self.issues["total_count"]))
         line.append(str(self.issues["avg_closed_time"]))
         line.append(str(self.openhub["stats"]["total_code_lines"]))
-        line.append("\"" + str('/'.join(self.openhub["stats"]["languages"])) + "\"")
+        line.append("\"" + str('/'.join(self.languages.keys())) + "\"")
+        line.append(str(self.openhub["stats"]["PAI"]))
+        line.append(str(self.contributors["total_commits"]))
+        line.append(str(self.contributors["bus_factor"]))
         with open(path, 'a') as f:
             f.write(",".join(line) + "\n")
         
