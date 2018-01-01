@@ -4,13 +4,13 @@ import requests as req
 from xml.etree import ElementTree
 import json
 
-PROJECTS_FILENAME = "test/projects.txt"
-OUTPUT_CSV_PATH = "test/github_stats.csv"
-OUTPUT_JSON_PATH = "test/github_stats.json"
+# PROJECTS_FILENAME = "test/projects.txt"
+# OUTPUT_CSV_PATH = "test/github_stats.csv"
+# OUTPUT_JSON_PATH = "test/github_stats.json"
 
-# PROJECTS_FILENAME = "projects2.txt"
-# OUTPUT_CSV_PATH = "github_stats2.csv"
-# OUTPUT_JSON_PATH  = "github_stats2.json"
+PROJECTS_FILENAME = "projects1.txt"
+OUTPUT_CSV_PATH = ""
+OUTPUT_JSON_PATH  = "github_stats1.json"
 
 def generate_project_list():
     base_params = {'api_key': conf['openhub_api']['api_key'], 'page': 0 }
@@ -50,7 +50,8 @@ def iter_projects(projects):
             print("    - OPENHUB\n    " + str(p.openhub))
             p.set_issue_data()
             print("    - ISSUES\n    " + str(p.issues))
-            # p.generate_csv_line(OUTPUT_CSV_PATH)
+            if (len(OUTPUT_CSV_PATH) > 1):
+                p.generate_csv_line(OUTPUT_CSV_PATH)
             res.append(p)
         except Exception as e:
             print("      ERROR - error while analyzing project -= %s/%s =- \n" % (project[1],project[2]))

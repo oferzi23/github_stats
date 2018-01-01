@@ -33,7 +33,7 @@ class Project:
         if "created_at" in r_j:
            res = r_j["created_at"]
         else:
-            raise Exception("COULD NOT GET CREATED DATE")
+            print("COULD NOT GET CREATED DATE")
         return res
 
     def set_language_data(self):

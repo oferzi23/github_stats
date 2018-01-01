@@ -1,0 +1,26 @@
+git-deps,aspiers,git-deps
+MyPaint,mypaint,mypaint
+NIP2,jcupitt,nip2
+Apache OpenOffice,apache,openoffice
+LibreOffice,LibreOffice,core
+Vim,vim,vim
+SynEdit,SynEdit,SynEdit
+m68k-atari-mint-gcc,freemint,m68k-atari-mint-gcc
+PuTTYTray,FauxFaux,PuTTYTray
+OpenSSH,openssh,openssh-portable
+phpMyAdmin,phpmyadmin,phpmyadmin
+oTranCe,DSB,oTranCe
+phpPgAdmin,xzilla,phppgadmin
+Python programming language,python,cpython
+Ruby,ruby,ruby
+The Fancy Programming Language,bakkdoor,fancy
+OpenELEC,OpenELEC,OpenELEC.tv
+Media Player Classic,mpc-hc,mpc-hc
+Rockbox,leavittx,rockbox
+TortoiseGit,TortoiseGit,TortoiseGit
+CPAN,andk,cpanpm
+Puppet,puppetlabs,puppet
+monit,arnaudsj,monit
+MailScanner,MailScanner,MailScanner
+dropbear,mkj,dropbear
+Ample SDK,clientside,amplesdk
