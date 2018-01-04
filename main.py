@@ -16,7 +16,7 @@ def generate_project_list():
     base_params = {'api_key': conf['openhub_api']['api_key'], 'page': 0 }
     api_url = "%s.xml" % (conf['openhub_api']['base_url'])
     names = []
-    for i in range(0,8):
+    for i in range(9,11):
         base_params['page'] = i
         res = req.get(api_url, params=base_params)
         tree = ElementTree.fromstring(res.content)
@@ -67,7 +67,7 @@ def generate_json_datatset(data, path):
         f.write(json.dumps(dataset))
 
 if __name__ == "__main__":
-    # projects = generate_project_list()
-    projects = read_project_list(PROJECTS_FILENAME)
-    projects_metrics = iter_projects(projects)
-    generate_json_datatset(projects_metrics, OUTPUT_JSON_PATH)
+    projects = generate_project_list()
+    # projects = read_project_list(PROJECTS_FILENAME)
+    # projects_metrics = iter_projects(projects)
+    # generate_json_datatset(projects_metrics, OUTPUT_JSON_PATH)
