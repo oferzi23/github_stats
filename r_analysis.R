@@ -1,19 +1,16 @@
 library(jsonlite)
 library(MASS)
-install.packages("ggplot2")
-library("ggplot2")
+# install.packages("ggplot2")
 library(plyr)
 
 #data = read.csv('test/github_stats.csv')
 #data1 <- read.csv('github_stats1.csv')
 #data2 <- read.csv('github_stats2.csv')
 
-data <- fromJSON("github_stats.json", flatten=TRUE)
-
+data <- fromJSON("final_dataset.json", flatten=TRUE)
 
 # data1 <- fromJSON("github_stats1.json", flatten=TRUE)
 # data2 <- fromJSON("github_stats2.json", flatten=TRUE)
-
 
 options(scipen = 999)
 
@@ -36,6 +33,13 @@ length(languages)
 
 langs_c <- gsub("languages.", "", languages)
 
+
+
+# make data frame without languages
+##################################################################################################
+
+data_clean <- data
+data_clean <- data_clean[ ,!(names(data_clean) %in% languages)]
 
 
 # Set Total Code Lines factor
@@ -144,13 +148,6 @@ axis(side = 1, at = bp, labels = top15$language_c, las = T)
 text(bp,top15$count+3,cex=.9, labels = top15$count)
 
 
-
-
-# make data frame without languages
-##################################################################################################
-
-data_clean <- data
-data_clean <- data_clean[ ,!(names(data_clean) %in% cols)]
 
 # Make 15 popular languages
 ##################################################################################################
@@ -516,13 +513,15 @@ names(data_clean)
 DS <- data.frame(
   owner = data$owner,
   name = data$name,
+  creation_date = data$created_at,
   issues.total_count = data$issues.total_count,
   issues.avg_closed_time = data$issues.avg_closed_time,
-  total_code_lines = factor(
-    ifelse(data$openhub.stats.total_code_lines < 10000, 1, 
-           ifelse(data$openhub.stats.total_code_lines < 100000, 2, 
-                  ifelse(data$openhub.stats.total_code_lines < 1000000, 3,
-                         ifelse(data$openhub.stats.total_code_lines < 10000000, 4, 5)))), levels = 1:5, labels = c("UNDER 10k","10k-100k","100k-1m","1m-10m","OVER 10m")),
+  # total_code_lines = factor(
+  #   ifelse(data$openhub.stats.total_code_lines < 10000, 1, 
+  #          ifelse(data$openhub.stats.total_code_lines < 100000, 2, 
+  #                 ifelse(data$openhub.stats.total_code_lines < 1000000, 3,
+  #                        ifelse(data$openhub.stats.total_code_lines < 10000000, 4, 5)))), levels = 1:5, labels = c("UNDER 10k","10k-100k","100k-1m","1m-10m","OVER 10m")),
+  total_code_lines = data$openhub.stats.total_code_lines,
   PAI = factor(
     ifelse(data_clean$openhub.stats.PAI == "Inactive", 1, 
            ifelse(data_clean$openhub.stats.PAI == "Very Low", 2, 
